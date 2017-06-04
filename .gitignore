@@ -1,0 +1,12 @@
+#ignore packages installed by npm
+node_modules
+
+#put any other files you do not want to check in here
+.DS_Store,
+*.bak
+
+# cookie sceret
+credentials.js
+
+# log
+log

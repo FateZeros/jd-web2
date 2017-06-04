@@ -1,0 +1,29 @@
+{
+  "name": "jd-web2",
+  "version": "1.0.0",
+  "description": "vue, vuex, vue-router, mongoose, express",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FateZeros/jd-web2.git"
+  },
+  "keywords": [
+    "vue",
+    "vuex",
+    "vue-router",
+    "mongoose",
+    "express"
+  ],
+  "author": "YJF",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/FateZeros/jd-web2/issues"
+  },
+  "homepage": "https://github.com/FateZeros/jd-web2#readme",
+  "devDependencies": {
+    "vue": "^2.3.3"
+  }
+}
