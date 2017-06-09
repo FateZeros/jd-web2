@@ -19,4 +19,4 @@ Vue.filter('toDate', date => {
 new Vue({
   router,
   store
-}).$mount('#CMS2')
+}).$mount('#front-jd')

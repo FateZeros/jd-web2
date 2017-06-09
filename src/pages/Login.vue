@@ -10,7 +10,6 @@
                type="text"
                name="userName"
                placeholder="用户名"
-               v-model.trim="name"
         >
       </p>
       <p class="input">
@@ -18,7 +17,6 @@
         <input id="password"
                type="password"
                placeholder="密码"
-               v-model.trim="pwd"
         >
       </p>
       <p class="info"></p>
@@ -33,5 +31,7 @@
   
 </script>
 <style lang="sass" rel="stylesheet/scss" scoped>
- 
+  section.login {
+    background: #fff;
+  }
 </style>

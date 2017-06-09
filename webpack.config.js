@@ -8,51 +8,42 @@ module.exports = {
     server: './src/server.js'
   },
   output: {
-    path: path.resolve(__dirname, 'dist'),
-    publicPath: '/',
+    path: path.resolve(__dirname, './dist'),
+    publicPath: '/dist/',
     filename: '[name].js'
-  },
-  resolveLoader: {
-    moduleExtensions: ['-loader']
   },
   module: {
     rules: [
       {
         test: /\.vue$/,
         use: {
-          loader: "vue",
+          loader: 'vue-loader',
           options: {
-            preserveWhitespace: false,
-            postcss: [
-              require('autoprefixer')({
-                browsers: ['last 3 versions']
+            loaders: {
+              css: ExtractTextPlugin.extract({
+                use: 'css-loader'
+              }),
+              sass: ExtractTextPlugin.extract({
+                use: ['css-loader', 'sass-loader']
               })
-            ],
-            css: ExtractTextPlugin.extract({
-              use: 'css-loader'
-            }),
-            sass: ExtractTextPlugin.extract({
-              use: 'sass-loader'
-            })
+            }
           }
         }  
       },
       {
         test: /\.scss$/,
-        use: [
-        	"style",
-        	"css",
-        	"scss"
-        ]
+        use: ExtractTextPlugin.extract({
+          use: ["style-loader", "css-loader", "scss-loader"]        	
+        })
       },
       {
         test: /\.js$/,
-        use: ['babel'],
+        use: ['babel-loader'],
         exclude: /node_modules/
       },
       {
         test: /\.(png|jpg|gif|svg)$/,
-        use: [ 'file-loader' ]
+        use: ['file-loader']
       },
       {
         test: /\.(woff|woff2|ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
