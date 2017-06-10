@@ -8,10 +8,13 @@ Vue.use(Vuex)
 
 const store = new Vuex.Store({
   state: {
-    'test': '1212'
+    'isLoading': false,
+    'user': { name: '', pwd: '' }
   },
   mutations,
   actions
 })
 
 export default store
+
+

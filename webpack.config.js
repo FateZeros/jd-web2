@@ -73,10 +73,14 @@ module.exports = {
     }
   },
   devServer: {
-  	hot: true,
-  	port: 1212,
+    port: 1212,
     historyApiFallback: true,
-    noInfo: true
+    noInfo: true,
+    proxy: {
+      '/': {
+        target: 'http://localhost:2121/'
+      }
+    }
   },
   devtool: '#eval-source-map'
 }
