@@ -33,7 +33,7 @@ module.exports = {
       {
         test: /\.scss$/,
         use: ExtractTextPlugin.extract({
-          use: ["style-loader", "css-loader", "scss-loader"]        	
+          use: ["css-loader", "sass-loader"]        	
         })
       },
       {
@@ -42,12 +42,24 @@ module.exports = {
         exclude: /node_modules/
       },
       {
-        test: /\.(png|jpg|gif|svg)$/,
-        use: ['file-loader']
+        test: /\.(png|jpg|gif|svg)(\?.*)?$/,
+        use: [{
+          loader: "url-loader",
+          options: {
+            limit: 10000,
+            name: 'images/[name].[hash:7].[ext]'
+          }
+        }]
       },
       {
-        test: /\.(woff|woff2|ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-        use: ['file-loader']
+        test: /\.(woff|woff2|ttf|eot|svg)(\?.*)?$/,
+        use: [{
+          loader: "url-loader",
+          options: {
+            limit: 10000,
+            name: 'fonts/[name].[hash:7].[ext]'
+          }
+        }]
       }
     ]
   },

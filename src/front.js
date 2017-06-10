@@ -2,10 +2,14 @@ import Vue from 'vue'
 import VueResource from 'vue-resource'
 import { mapState } from 'vuex'
 
+import MyCanvas from './components/MyCanvas.vue'
+
 import store from './store'
 import router from './router'
 
-// import './style/index.scss'
+
+
+import './style/index.scss'
 
 Vue.use(VueResource)
 
@@ -18,5 +22,6 @@ Vue.filter('toDate', date => {
 
 new Vue({
   router,
-  store
+  store,
+  components: { MyCanvas }
 }).$mount('#front-jd')
