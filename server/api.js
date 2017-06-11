@@ -4,7 +4,7 @@ const db = require('./db')
 
 router.post('/api/login', (req, res) => {
   const { username, pwd } = req.body
-  db.User.findOne({ username }, (err, data) => {
+  db.User.findOne({ username }, 'passwd', (err, data) => {
   	switch (true) {
   		case !!err: 
   			console.log(err)
@@ -12,10 +12,10 @@ router.post('/api/login', (req, res) => {
   		case !data:
   			res.send({ code: 40001, msg: '账号不存在' })
   			break
-  		case data.pwd === pwd:
+  		case data.passwd === pwd:
   			res.send({ code: 200, msg: '登录成功' })
   			break
-  		case data.pwd !== pwd:
+  		case data.passwd !== pwd:
   			res.send({ code: 40002, msg: '密码错误' })
   			break
   		default:

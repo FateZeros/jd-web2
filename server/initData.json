@@ -1,7 +1,7 @@
 [
   {
     "type": "User",
-    "name": "Lily",
+    "username": "Lily",
     "passwd": "123",
     "mobile": "18627716271",
     "email": "490293266@qq.com",
@@ -9,7 +9,7 @@
   },
   {
     "type": "User",
-    "name": "Lucy",
+    "username": "Lucy",
     "passwd": "123",
     "mobile": "18627716271",
     "email": "490293266@qq.com",

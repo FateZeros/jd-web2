@@ -3,7 +3,7 @@ const Schema = mongoose.Schema
 const initData = require('./initData.json')
 
 const userSchema = new Schema({
-  name: String,
+  username: String,
 	passwd: String,
 	mobile: String,
 	email: String,
@@ -24,13 +24,11 @@ const initialize = function () {
       Promise.all(initData.map(item => new Models[item.type](item).save()))
         .then(() => console.log('Initialize successfully.'))
         .catch(() => console.log('Something went wrong during initializing.'))
-    } else {
-      Models.initialized = true
     }
   })
 }
 
-mongoose.connect('mongodb://127.0.0.1/jd_db')
+mongoose.connect('mongodb://localhost:27017/jd_db')
 
 const db = mongoose.connection
 

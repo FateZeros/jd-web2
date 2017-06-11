@@ -20,13 +20,23 @@ export default {
       })
   },
   login ({ commit }, payload) {
-    console.log(payload)
     return Vue.http.post('/api/login', payload)
       .then(response => {
-        if (response.data.state === 1) {
-          commit('SET_USER', payload)
-        } else {
-          return Promise.reject(response.data.msg)
+        const code = response.data.code
+        switch (code) {
+          case 200:
+            commit('SET_USER', payload)
+            // console.log(1212)
+            break
+          case 40001:
+            return Promise.reject(response.data.msg)
+            break
+          case 40002:
+            return Promise.reject(response.data.msg)
+            break
+          default:
+            return Promise.reject(response.data.msg)
+            break
         }
       })
   }

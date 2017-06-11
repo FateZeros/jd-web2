@@ -37,4 +37,9 @@ npm install --save-dev cross-env
 ```bash
 npm install --save body-parser cookie-parser express mongoose serve-favicon autoprefixer
 ```
+
+### 安装
+```bash
+npm install --save-dev nodemon
+```
  

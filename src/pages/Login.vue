@@ -19,10 +19,13 @@
         </p>
       </div>
     </section>
+    <a-footer></a-footer>
   </div>
+
 </template>
 <script>
   import { mapActions } from 'vuex'
+  import AFooter from '../components/Footer.vue'
 
   export default {
     data() {
@@ -39,18 +42,28 @@
 
         this.login({ username: this.username, pwd: this.pwd })
             .then(() => {
-              console.log('success')
+              this.$router.push({ path: '/home' })
             })
             .catch(msg => this.info = msg)
       },
+      clearInfo() {
+        this.info = ''
+      },
       ...mapActions(['login'])
+    },
+    components: {
+      AFooter
+    },
+    watch: {
+      name: 'clearInfo',
+      pwd: 'clearInfo'
     }
-
   }
   
 </script>
 <style lang="sass" rel="stylesheet/scss" scoped>
   @import "../style/variables";
+
   .login-bg {
     margin-top: 200px;
     background: url(../assets/img/login-bg.jpg) no-repeat center;
