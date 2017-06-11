@@ -4,8 +4,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 module.exports = {
   entry: {
-    front: './src/front.js',
-    server: './src/server.js'
+    front: './src/front.js'
   },
   output: {
     path: path.resolve(__dirname, './dist'),
@@ -77,8 +76,9 @@ module.exports = {
     historyApiFallback: true,
     noInfo: true,
     proxy: {
-      '/': {
-        target: 'http://localhost:2121/'
+      '/api': {
+        target: 'http://localhost:2121',
+        changeOrign: true
       }
     }
   },
