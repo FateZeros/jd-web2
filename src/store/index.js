@@ -4,6 +4,8 @@ import actions from './actions'
 import mutations from './mutations'
 // import getters from './getters'
 
+import cart from './modules/cart'
+
 Vue.use(Vuex)
 
 const store = new Vuex.Store({
@@ -11,8 +13,11 @@ const store = new Vuex.Store({
     'isLoading': false,
     'user': { name: '', pwd: '' }
   },
-  mutations,
-  actions
+  actions,
+  modules: {
+  	cart
+  },
+  mutations
 })
 
 export default store
