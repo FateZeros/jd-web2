@@ -1,5 +1,13 @@
 <template>
   <div>
+    <!-- 登陆页 头部 -->
+    <div class="login-header">
+      <div class="logo-cont">
+        <div class="logo"></div>
+        <div class="logo-title">欢迎登录</div>
+      </div>
+    </div>
+    <!-- 登录页 主体 -->
     <div class="login-bg">
       <section class="login">
         <div class="form" @keyup.enter="doLogin">
@@ -64,21 +72,58 @@
 </script>
 <style lang="sass" rel="stylesheet/scss" scoped>
   @import "../style/variables";
+  .login-header {
+    height: 110px;
+    background: url(../assets/img/headbg.jpg) repeat-x left bottom;
+  }
+
+  .logo-cont {
+    width: 1190px;
+    height: 90px;
+    margin: 0 auto;
+  }
+
+  .logo {
+    width: 160px;
+    height: 50px;
+    float: left;
+    margin-top: 24px;
+    background: url(../assets/img/icon-jd.png) no-repeat;
+  }
+
+  .logo-title {
+    float: left;
+    height: 34px;
+    line-height: 34px;
+    font-size: 24px;
+    color: #333;
+    padding-left: 30px;
+    margin-top: 34px;
+  }
 
   .login-bg {
-    margin-top: 200px;
-    background: url(../assets/img/login-bg.jpg) no-repeat center;
+    padding: 20px;
+    width: 100%;
+    height: 475px;
+    position: relative;
+    background: #2d7cf1 url(../assets/img/login-bg.jpg) no-repeat center;
+    background-size: 990px 475px;
   }
 
   section.login {
+    width: 345px;
+    height: 350px;
+    background: #fff;
+    // margin: 0 auto;
+    position: absolute;
+    top: 50%;
+    right: 200px;
+    border-radius: 10px;
+    margin-top: -175px;
+
     .form {
-      width: 500px;
-      height: 400px;
-      margin: 0 auto;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
+      // transform: translate(-50px, -130px);
+      margin-top: 50px;
       .icon i {
         transition: all 4s;
         &:hover {

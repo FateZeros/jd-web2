@@ -33,10 +33,10 @@
 		font-size: 12px;
 	  color: #999;
 	  text-align: center;
-	  background-color: #fff;
+	  background: rgba(255, 255, 255, .5);
 	  padding: 20px 0;
-	  position: fixed;
-	  bottom: 10px;
+	  // position: fixed;
+	  // bottom: 10px;
 	}
 
 	.copy-right {
