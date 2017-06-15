@@ -29,13 +29,13 @@ export default {
             // console.log(1212)
             break
           case 40001:
-            return Promise.reject(response.data.msg)
+            return Promise.reject(response.data)
             break
           case 40002:
-            return Promise.reject(response.data.msg)
+            return Promise.reject(response.data)
             break
           default:
-            return Promise.reject(response.data.msg)
+            return Promise.reject(response.data)
             break
         }
       })

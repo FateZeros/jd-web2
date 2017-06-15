@@ -18,13 +18,18 @@
             <i class="fa fa-user fa-fw"></i>
             <input id="userName" type="text" name="userName" placeholder="用户名" v-model.trim="username"/>
           </p>
+          <p class="info">{{nameErr}}</p>
           <p class="input">
             <i class="fa fa-key fa-fw"></i>
             <input id="password" type="password" placeholder="密码" v-model.trim="pwd"/>
           </p>
-          <p class="info">{{info}}</p>
+          <p class="info">{{pwdErr}}</p>
+          <div class="forget-pwd">
+            <a @click="forgetPwd()">忘记密码</a>
+          </div>
           <p>
-            <button @click="doLogin()">登陆</button>
+            <button @click="doLogin()">登录</button>
+            <button @click="register()">注册</button>
           </p>
         </div>
       </section>
@@ -41,22 +46,36 @@
       return {
         username: '',
         pwd: '',
-        info: ''
+        nameErr: '',
+        pwdErr: ''
       }
     },
     methods: {
       doLogin() {
-        if (!this.username.length) return this.info = '请输入正常的用户名'
-        if (!this.pwd.length) return this.info = '请输入正常的密码' 
+        if (!this.username.length) return this.nameErr = '请输入用户名'
+        if (!this.pwd.length) return this.pwdErr = '请输入密码' 
 
         this.login({ username: this.username, pwd: this.pwd })
             .then(() => {
               this.$router.push({ path: '/home' })
             })
-            .catch(msg => this.info = msg)
+            .catch(({ code, msg }) => {
+              if (code === 40001) {
+                this.nameErr = msg
+              } else {
+                this.pwdErr = msg
+              }
+            })
+      },
+      forgetPwd() {
+        this.$router.push({ path: '/forget-pwd' })
+      },
+      register() {
+        this.$router.push({ path: '/register' })
       },
       clearInfo() {
-        this.info = ''
+        this.nameErr = '',
+        this.pwdErr = ''
       },
       ...mapActions(['login'])
     },
@@ -64,7 +83,7 @@
       AFooter
     },
     watch: {
-      name: 'clearInfo',
+      username: 'clearInfo',
       pwd: 'clearInfo'
     }
   }
@@ -130,15 +149,30 @@
           transform: rotate(1440deg);
         }
       }
+      .forget-pwd {
+        width: 100%;
+        height: 20px;
+        font-size: 12px;
+        text-align: right;
+        padding-right: 50px;
+        box-sizing: border-box;
+        
+        a {
+          &:hover{
+            cursor: pointer;
+            color: $red1;
+          }
+        }
+      }
       > p {
         height: 50px;
         text-align: center;
         transition: all 0.4s;
         &.info {
-          margin: 10px;
+          // margin: 10px;
           font-size: 12px;
           height: 20px;
-          color: $black3;
+          color: $red1;
         }
         &.input:hover {
           color: $green2;
@@ -157,8 +191,9 @@
           color: $black3;
           border: 1px solid $green1;
           border-radius: 4px;
-          width: 60px;
+          width: 80px;
           height: 30px;
+          margin-top: 10px;
           &:hover {
             background-color: $green1;
             color: #FFF;
