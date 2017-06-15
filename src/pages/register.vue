@@ -22,30 +22,33 @@
 	          </p>
 	          <p class="info">{{pwdErr}}</p>
 	          <p class="input">
-	            <i class="fa fa-key fa-fw"></i>
-	            <input id="re-pwd" type="password" placeholder="确认密码" v-model.trim="pwd"/>
+	            <i class="fa fa-lock fa-fw"></i>
+	            <input id="re-pwd" type="password" placeholder="确认密码" v-model.trim="rePwd"/>
 	          </p>
-	          <p class="info">{{pwdErr}}</p>
+	          <p class="info">{{rePwdErr}}</p>
 	          <p class="input">
-	            <i class="fa fa-key fa-fw"></i>
-	            <input id="mobile" type="text" placeholder="手机" v-model.trim="pwd"/>
+	            <i class="fa fa-mobile fa-lg fa-fw"></i>
+	            <input id="mobile" type="text" placeholder="手机" v-model.trim="mobile"/>
 	          </p>
-	          <p class="info">{{pwdErr}}</p>
+	          <p class="info">{{mobileErr}}</p>
 	          <p class="input">
-	            <i class="fa fa-key fa-fw"></i>
-	            <input id="email" type="email" placeholder="邮箱" v-model.trim="pwd"/>
+	            <i class="fa fa-envelope fa-fw"></i>
+	            <input id="email" type="email" placeholder="邮箱" v-model.trim="email"/>
 	          </p>
-	          <p class="info">{{pwdErr}}</p>
+	          <p class="info">{{emailErr}}</p>
+	          <p>
+	            <button @click="doRegister()">注册</button>
+	          </p>
 	        </div>
 	      </section>
 			</div>
 			<div class="form-company">
 				<div class="company-cont">
-					<span class="glyphicon glyphicon-stats company-register-icon"></span>
+					<i class="fa fa-building fa-2x"></i>
 					企业用户注册
 				</div>
 				<div class="globle-cont">
-					<span class="glyphicon glyphicon-globe globe-icon"></span>
+					<i class="fa fa-globe fa-2x"></i>
 					<span>INTERNATIONAL<br>CUSTOMER</span>
 				</div>
 			</div>
@@ -55,6 +58,7 @@
 </template>
 
 <script>
+	import { mapActions } from 'vuex'
 	import AFooter from '../components/Footer.vue'
 
 	export default {
@@ -62,18 +66,67 @@
 			return {
 				username: '',
         pwd: '',
+        rePwd: '',
+        mobile: '',
+        email: '',
 				nameErr: '',
-				pwdErr: ''
+				pwdErr: '',
+				rePwdErr: '',
+				mobileErr: '',
+				emailErr: ''
 			}
 		},
 		methods: {
 			toLogin() {
 				this.$router.push({ path: '/login' })
-			}
+			},
+			doRegister() {
+				const username = this.username
+				const pwd = this.pwd
+				const rePwd = this.rePwd
+				const mobile = this.mobile
+				const email = this.email
+				if (!username.length) return this.nameErr = '请输入用户名'
+				if (!pwd.length) return this.pwdErr = '请输入密码' 
+				if (!rePwd.length) return this.rePwdErr = '请输入确认密码'
+				if (!mobile.length) return this.mobileErr = '请输入手机号'
+				if (!email.length) return this.emailErr = '请输入邮箱'
+
+				if (pwd !== rePwd) return this.rePwdErr = '两次密码输入不一样'
+				if (!(/^1[3578]\d{9}$/.test(mobile))) return this.mobileErr = '请输入正确的手机号'
+				if (!(/^(\w)+(\.\w+)*@(\w)+((\.\w+)+)$/).test(email)) return this.emailErr = '请输入正确的邮箱'
+
+				this.register({
+					username,
+					pwd,
+					mobile,
+					email
+				}).then(() => {
+					this.$router.push({ path: '/login' })
+				}).catch(({ code, msg}) => {
+					console.log(msg)
+				})
+
+			},
+			clearInfo() {
+        this.nameErr = '',
+        this.pwdErr = '',
+        this.rePwdErr = '',
+        this.mobileErr = '',
+        this.emailErr = ''
+      },
+      ...mapActions(['register'])
 		},
 		components: {
 			AFooter
-		}
+		},
+		watch: {
+      username: 'clearInfo',
+      pwd: 'clearInfo',
+      rePwd: 'clearInfo',
+      mobile: 'clearInfo',
+      email: 'clearInfo'
+    }
 	}
 </script>
 
@@ -139,6 +192,23 @@
 
 .form-company {
 	width: 40%;
+	padding-left: 100px;
+
+	.company-cont {
+		margin-top: 50px;
+
+		i {
+			color: #a1ce40;
+		}
+	}
+
+	.globle-cont {
+		margin-top: 50px;
+
+		i {
+			color: #97c3ff;
+		}
+	}
 }
 
 section.register {
@@ -170,7 +240,7 @@ section.register {
         color: $black3;
         border: 1px solid $green1;
         border-radius: 4px;
-        width: 80px;
+        width: 200px;
         height: 30px;
         margin-top: 10px;
 	        &:hover {
