@@ -104,7 +104,11 @@
 				}).then(() => {
 					this.$router.push({ path: '/login' })
 				}).catch(({ code, msg}) => {
-					console.log(msg)
+					if (code === 40003) {
+						this.nameErr = msg
+					} else {
+						this.emailErr = msg
+					}
 				})
 
 			},
