@@ -30,6 +30,15 @@ module.exports = {
         }  
       },
       {
+        test: /\.css$/,
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: [
+            'css-loader'
+          ]
+        })
+      },
+      {
         test: /\.scss$/,
         use: ExtractTextPlugin.extract({
           use: ["css-loader", "sass-loader"]        	
@@ -64,7 +73,11 @@ module.exports = {
   },
   plugins: [
     /* CSS 单独打包 */
-    new ExtractTextPlugin('styles.css')
+    new ExtractTextPlugin({
+      filename: 'css/styles.css',
+      allChunks: true,
+      disable: false
+    })
   ],
   resolve: {
     alias: {

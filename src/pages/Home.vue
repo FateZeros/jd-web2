@@ -74,14 +74,14 @@
 		</div>
 		
 		<!-- 主页主体 -->
-		<div class="container">
-		</div>
-
+		<home-grid></home-grid>
+		
 		<a-footer></a-footer>
 	</div>
 </template>
 
 <script>
+	import HomeGrid from './HomeGrid.vue'
 	import AFooter from '../components/Footer.vue'
 
 	export default {
@@ -94,6 +94,7 @@
 			}
 		},
 		components: {
+			HomeGrid,
 			AFooter
 		}
 	}
@@ -105,67 +106,67 @@
 		width: 100%;
 		height: 30px;
 		background: #dfe0e1;
-	}
 
-	.nav-bar {
-		width: $commonWidth;
-		height: 30px;
-		margin: 0 auto;
-		font-size: 12px;
-		line-height: 30px;
-	}
-
-	.location {
-		float: left;
-		width: 258px;
-		text-align: right;
-
-		i {
-			color: $red1;
+		.nav-bar {
+			width: $commonWidth;
+			height: 30px;
+			margin: 0 auto;
+			font-size: 12px;
+			line-height: 30px;
 		}
-	}
+	
+		.location {
+			float: left;
+			width: 258px;
+			text-align: right;
 
-	.nav-cont {
-		width: 700px;
-		height: 30px;
-		float: right;
-
-		> ul {
-			height: 20px;
-			margin: 5px 0;
-
-			li {
-				float: left;
-				line-height: 20px;
-				border-right: 1px solid #ccc;
-				padding:0 10px;
-				color: #999;
-
-				span {
-					color: $red1;
-					margin-left: 5px;
-					&:hover {
-						cursor: pointer;
-					}
-				}
-
-				a {
-					&:hover {
-						color: $red1;
-						cursor: pointer;
-					}
-				}
+			i {
+				color: $red1;
 			}
+		}
 
-			li:last-child {
-				border-right: none;
+		.nav-cont {
+			width: 700px;
+			height: 30px;
+			float: right;
+
+			> ul {
+				height: 20px;
+				margin: 5px 0;
+
+				li {
+					float: left;
+					line-height: 20px;
+					border-right: 1px solid #ccc;
+					padding:0 10px;
+					color: #999;
+
+					span {
+						color: $red1;
+						margin-left: 5px;
+						&:hover {
+							cursor: pointer;
+						}
+					}
+
+					a {
+						&:hover {
+							color: $red1;
+							cursor: pointer;
+						}
+					}
+				}
+
+				li:last-child {
+					border-right: none;
+				}
 			}
 		}
 	}
 
 	.header {
 		width: 100%;
-		height: 124px;
+		height: 140px;
 	}
 
 	.search-cont {
@@ -175,7 +176,7 @@
 		.logo {
 			position: absolute;
 		  z-index: 2;
-		  left: 60px;
+		  left: 65px;
 		  top: 0;
 		  width: 190px;
 		  height: 170px;
