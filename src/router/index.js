@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Login from '../pages/Login.vue'
-import Home from '../pages/Home.vue'
+import Home from '../pages/home/Home.vue'
 import ForgetPwd from '../pages/ForgetPwd.vue'
 import Register from '../pages/Register.vue'
 

@@ -85,7 +85,7 @@
 <script>
 	import HomeGrid from './HomeGrid.vue'
 	import HomeSeckill from './HomeSeckill.vue'
-	import AFooter from '../components/Footer.vue'
+	import AFooter from '../../components/Footer.vue'
 
 	export default {
 		methods: {
@@ -105,7 +105,7 @@
 </script>
 
 <style lang="sass" rel="stylesheet/scss" scoped>
-	@import "../style/variables";
+	@import "../../style/variables";
 	.nav-container {
 		width: 100%;
 		height: 30px;
@@ -185,7 +185,7 @@
 		  width: 190px;
 		  height: 170px;
 		  box-shadow: 0 -12px 10px rgba(0,0,0,.2);
-		  background: #fff url(../assets/img/logo.v2@2x.png) no-repeat center;
+		  background: #fff url(../../assets/img/logo.v2@2x.png) no-repeat center;
 		  background-size: 190px 170px;
 		}
 

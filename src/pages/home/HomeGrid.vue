@@ -26,14 +26,14 @@
 
 <script>
 	// 测试图片
-	import swiper01 from '../assets/img/swipe01.jpg'
-	import swiper02 from '../assets/img/swipe02.jpg'
-	import swiper03 from '../assets/img/swipe03.jpg'
-	import swiper04 from '../assets/img/swipe04.jpg'
-	import swiper05 from '../assets/img/swipe05.jpg'
+	import swiper01 from '../../assets/img/swipe01.jpg'
+	import swiper02 from '../../assets/img/swipe02.jpg'
+	import swiper03 from '../../assets/img/swipe03.jpg'
+	import swiper04 from '../../assets/img/swipe04.jpg'
+	import swiper05 from '../../assets/img/swipe05.jpg'
 
-	import static01 from '../assets/img/static01.jpg'
-	import static02 from '../assets/img/static02.jpg'
+	import static01 from '../../assets/img/static01.jpg'
+	import static02 from '../../assets/img/static02.jpg'
 
 	import { swiper, swiperSlide } from 'vue-awesome-swiper'
 
@@ -71,7 +71,7 @@
 </script>
 
 <style lang="sass" rel="stylesheet/scss" scoped>
-	@import "../style/variables";
+	@import "../../style/variables";
 	.container {
 		width: 100%;
 	}
