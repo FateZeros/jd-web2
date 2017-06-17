@@ -75,13 +75,16 @@
 		
 		<!-- 主页主体 -->
 		<home-grid></home-grid>
-		
+		<!-- 京东秒杀 -->
+		<home-seckill></home-seckill>
+
 		<a-footer></a-footer>
 	</div>
 </template>
 
 <script>
 	import HomeGrid from './HomeGrid.vue'
+	import HomeSeckill from './HomeSeckill.vue'
 	import AFooter from '../components/Footer.vue'
 
 	export default {
@@ -95,6 +98,7 @@
 		},
 		components: {
 			HomeGrid,
+			HomeSeckill,
 			AFooter
 		}
 	}
