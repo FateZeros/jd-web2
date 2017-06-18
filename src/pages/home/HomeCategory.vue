@@ -25,6 +25,19 @@
 					<i class="head-corner good-corner"></i>
 					优品专辑
 					<a>甄选优质好物&nbsp;<i class="fa fa-chevron-circle-right"></i></a>
+				</div>
+				<div class="category-goods">
+					<swiper :options="swiperOption" ref="swipeGoods" class="swiper-box">
+						<swiper-slide class="swipe-item" v-for="(good, key) in goods" :key="key">
+							<div class="good-title">
+								{{good.name}}
+							</div>
+							<div class="good-imgs" >
+								<img :src="img" alt="" v-for="(img, key) in good.imgs" :key="key" />
+							</div>
+						</swiper-slide>
+						<div class="swiper-pagination" slot="pagination"></div>
+					</swiper>
 				</div>	
 			</div>
 			<!-- 排行榜 -->
@@ -41,13 +54,28 @@
 </template>
 
 <script>
-	//测试图片
+	//发现好货 测试图片
 	import find01 from '../../assets/img/find01.webp'
 	import find02 from '../../assets/img/find02.webp'
 	import find03 from '../../assets/img/find03.webp'
 	import find04 from '../../assets/img/find04.webp'
 	import find05 from '../../assets/img/find05.webp'
 	import find06 from '../../assets/img/find06.webp'
+	//优品专辑 测试图片
+	import good_1_1 from '../../assets/img/good_1_01.png'
+	import good_1_2 from '../../assets/img/good_1_02.png'
+	import good_1_3 from '../../assets/img/good_1_03.jpg'
+	import good_2_1 from '../../assets/img/good_2_01.jpg'
+	import good_2_2 from '../../assets/img/good_2_02.jpg'
+	import good_2_3 from '../../assets/img/good_2_03.jpg'
+	import good_3_1 from '../../assets/img/good_3_01.jpg'
+	import good_3_2 from '../../assets/img/good_3_02.jpg'
+	import good_3_3 from '../../assets/img/good_3_03.jpg'
+	import good_4_1 from '../../assets/img/good_4_01.jpg'
+	import good_4_2 from '../../assets/img/good_4_02.jpg'
+	import good_4_3 from '../../assets/img/good_4_03.jpg'
+
+	import { swiper, swiperSlide } from 'vue-awesome-swiper'
 
 	export default {
 		data() {
@@ -76,8 +104,34 @@
 					id: 6,
 					img: find06,
 					name: '华味亨 鸡蛋薄脆饼'
-				}]
+				}],
+				goods: [{
+					id: 1,
+					name: '懒人出街，纯色t恤随性有型',
+					imgs: [good_1_1, good_1_2, good_1_3]
+				}, {
+					id: 2,
+					name: '制冷快低能耗，变频壁挂空调值得拥有',
+					imgs: [good_2_1, good_2_2, good_2_3]
+				}, {
+					id: 3,
+					name: '感觉钱包被掏空，行业尖货让你剁手不能停',
+					imgs: [good_3_1, good_3_2, good_3_3]
+				}, {
+					id: 4,
+					name: '萌系高逼格好物，各大节日通关秘籍',
+					imgs: [good_4_1, good_4_2, good_4_3]
+				}],
+				swiperOption: {
+					autoplay: 5000,
+					slidesPerColumn: 2,
+          pagination: '.swiper-pagination'
+				}
 			}
+		},
+		components: {
+			swiper,
+			swiperSlide
 		}
 	}
 	
@@ -232,6 +286,44 @@
 		    word-wrap: break-word;
 			}
 
+		}
+
+		.category-goods {
+			width: 100%;
+			height: 100%;
+			padding: 10px;
+			box-sizing: border-box;
+
+			.swiper-box {
+				width: 100%;
+				height: 100%;
+
+				.swipe-item {
+					width: 100%;
+					height: 160px;
+
+					.good-title {
+						width: 100%;
+						font-size: 14px;
+				    line-height: 16px;
+				    color: #666;
+				    text-indent: 10px;
+				    margin-bottom: 15px;
+				    text-align: left;
+					}
+
+					.good-imgs {
+						width: 100%;
+						height: 160px;
+
+						img {
+							width: 110px;
+							height: 110px;
+							margin: 0 5px;
+						}
+					}
+				}
+			}
 		}
 	}
 </style>
