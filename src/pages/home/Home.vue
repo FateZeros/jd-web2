@@ -77,6 +77,8 @@
 		<home-grid></home-grid>
 		<!-- 京东秒杀 -->
 		<home-seckill></home-seckill>
+		<!-- 商品分类 推荐 -->
+		<home-category></home-category>
 
 		<a-footer></a-footer>
 	</div>
@@ -85,6 +87,7 @@
 <script>
 	import HomeGrid from './HomeGrid.vue'
 	import HomeSeckill from './HomeSeckill.vue'
+	import HomeCategory from './HomeCategory.vue'
 	import AFooter from '../../components/Footer.vue'
 
 	export default {
@@ -99,6 +102,7 @@
 		components: {
 			HomeGrid,
 			HomeSeckill,
+			HomeCategory,
 			AFooter
 		}
 	}
