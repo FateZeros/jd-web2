@@ -47,7 +47,48 @@
 					<i class="head-corner rank-corner"></i>
 					排行榜
 					<a>专属你的购物指南&nbsp;<i class="fa fa-chevron-circle-right"></i></a>
-				</div>	
+				</div>
+				<div class="category-rank">
+					<ul class="rank-title">
+						<li>
+							<input type="radio" id="tab1" name="tab-control" checked>
+							<label for="tab1">智能手环</label>
+						</li>
+						<li>
+							<input type="radio" id="tab2" name="tab-control" checked>
+							<label for="tab2">维修保养</label>
+						</li>
+						<li>
+							<input type="radio" id="tab3" name="tab-control" checked>
+							<label for="tab3">早教启智</label>			
+						</li>
+						<li>
+							<input type="radio" id="tab4" name="tab-control" checked>
+							<label for="tab4">手机通讯</label>		
+						</li>
+						<li>
+							<input type="radio" id="tab5" name="tab-control" checked>
+							<label for="tab5">智能手表</label>		
+						</li>
+					</ul>
+					<div class="rank-content">
+						<section>
+							<h2>1212</h2>
+						</section>
+						<section>
+							<h2>2</h2>
+						</section>
+						<section>
+							<h2>3</h2>
+						</section>
+						<section>
+							<h2>4</h2>
+						</section>
+						<section>
+							<h2>5</h2>
+						</section>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -322,6 +363,30 @@
 							margin: 0 5px;
 						}
 					}
+				}
+			}
+		}
+
+		.category-rank {
+			width: 100%;
+			height: 100%;
+			padding: 10px;
+			box-sizing: border-box;
+			border: 1px solid;
+
+			.rank-title {
+				width: 100%;
+				height: 32px;
+				padding: 6px 0 7px;
+				display: flex;
+				justify-content: space-between;
+
+				li {
+					width: 77px;
+				}
+
+				input[name="tab-control"] {
+					display: none;
 				}
 			}
 		}
