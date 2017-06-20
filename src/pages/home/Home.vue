@@ -9,6 +9,7 @@
 				</div>
 				<div class="nav-cont">
 					<ul>
+						<li class="nav-item">{{user}}</li>
 						<li class="nav-item"><a @click="toLogin()">你好，请登录</a><span @click="toRegister()">免费注册</span></li>
 						<li class="nav-item"><a>我的订单</a></li>
 						<li class="nav-item"><a>我的京东</a></li>
@@ -90,6 +91,8 @@
 	import HomeCategory from './HomeCategory.vue'
 	import AFooter from '../../components/Footer.vue'
 
+	import { mapState } from 'vuex'
+
 	export default {
 		methods: {
 			toLogin() {
@@ -99,6 +102,7 @@
 				this.$router.push({ path: '/register' })
 			}
 		},
+		computed: mapState(['user']),
 		components: {
 			HomeGrid,
 			HomeSeckill,

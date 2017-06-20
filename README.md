@@ -38,8 +38,17 @@ npm install --save-dev cross-env
 npm install --save body-parser cookie-parser express mongoose serve-favicon autoprefixer
 ```
 
-### 安装
+### 安装 nodemon打印请求过程
 ```bash
 npm install --save-dev nodemon
 ```
+
+### RESTful API
+```
+npm install --save jsonwebtoken bcrypt passport passport-http-bearer
+```
+jsonwebtoken: 生成token
+bcrypt: 对用户密码加密
+passport: 权限验证库
+passport-http-bearer: Passport的HTTP承载认证策略
  

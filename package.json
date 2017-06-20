@@ -52,10 +52,14 @@
   },
   "dependencies": {
     "autoprefixer": "^7.1.1",
+    "bcrypt": "^1.0.2",
     "body-parser": "^1.17.2",
     "cookie-parser": "^1.4.3",
     "express": "^4.15.3",
+    "jsonwebtoken": "^7.4.1",
     "mongoose": "^4.10.4",
+    "passport": "^0.3.2",
+    "passport-http-bearer": "^1.0.1",
     "serve-favicon": "^2.4.3",
     "vue-awesome-swiper": "^2.4.2"
   }

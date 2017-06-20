@@ -372,7 +372,7 @@
 			height: 100%;
 			padding: 10px;
 			box-sizing: border-box;
-			border: 1px solid;
+			// border: 1px solid;
 
 			.rank-title {
 				width: 100%;
@@ -387,6 +387,17 @@
 
 				input[name="tab-control"] {
 					display: none;
+				}
+			}
+
+			.rank-content {
+				width: 100%;
+				height: 100%;
+				overflow: hidden;
+
+				section {
+					width: 100%;
+					height: 100%;
 				}
 			}
 		}
