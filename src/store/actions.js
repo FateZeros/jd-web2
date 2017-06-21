@@ -50,7 +50,7 @@ export default {
     //暂时走vuex
     return Vue.http.post('/api/register', payload)
       .then(response => {
-        console.log(response)
+        // console.log(response)
         const code = response.data.code
         if (code === 200) {
           return Promise.resolve(response.data)

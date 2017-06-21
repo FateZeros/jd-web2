@@ -1,9 +1,12 @@
 const express = require('express')
 const jwt = require('jsonwebtoken')
+const passport = require('passport')
 const router = express.Router()
 
 const User = require('../models/user')
 const config = require('../config')
+
+require('../passport')(passport)
 
 //登录
 router.post('/login', (req, res) => {
@@ -15,9 +18,11 @@ router.post('/login', (req, res) => {
     if (!user) {
       res.send({ code: 40001, msg: '用户名不存在' })
     } else if (user) {
+      console.log(pwd, user.passwd)
+      //$2a$10$cF79WkIhVeM95ktWyPZh8.iZIGXc2sfQNvd351TBDb6RzNmm.xsQm
       user.comparePassword(pwd, (err, isMatch) => {
         if (isMatch && !err) {
-          var token = jwt.sign({ name: user.name }, config.secret, {
+          var token = jwt.sign({ name: user.username }, config.secret, {
             expiresIn: 10080
           })
           user.token = token
@@ -32,10 +37,10 @@ router.post('/login', (req, res) => {
             token: 'Bearer' + token,
             name: username
           })
+        } else {
+          res.send({ code: 40002, msg: '密码错误' })
         }
       })
-    } else {
-      res.send({ code: 40002, msg: '密码错误' })
     }
   	// switch (true) {
   	// 	case !!err: 
@@ -67,7 +72,7 @@ router.post('/register', (req, res) => {
   // 后台也需验证 手机号和邮箱是否合法 暂不做
   User.findOne({ username }, (err, data) => {
     if (data) {
-      res.send({ code: 40003, msg: '用户名已存在' })
+      res.json({ code: 40003, msg: '用户名已存在' })
     } else {
       // 写入参数过多时 普通用户注册
       // const params = {
@@ -97,9 +102,9 @@ router.post('/register', (req, res) => {
       })
       newUser.save((err) => {
         if (err) {
-          res.send({ code: 50001, msg: '数据库故障' })
+          res.json({ code: 50001, msg: '数据库故障' })
         }
-        res.send({ code: 200, msg: '注册成功' })
+        res.json({ code: 200, msg: '注册成功' })
       }) 
     }
   })

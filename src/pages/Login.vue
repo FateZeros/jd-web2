@@ -40,6 +40,7 @@
 <script>
   import { mapActions } from 'vuex'
   import AFooter from '../components/Footer.vue'
+  import { set } from '../utils/'
 
   export default {
     data() {
@@ -56,7 +57,10 @@
         if (!this.pwd.length) return this.pwdErr = '请输入密码' 
 
         this.login({ username: this.username, pwd: this.pwd })
-            .then(() => {
+            .then(response => {
+              console.log(response)
+              const date = new Date(Date.now() + 60000 * 30)
+              setUser('jdUser', this.name, date)
               this.$router.push({ path: '/home' })
             })
             .catch(({ code, msg }) => {

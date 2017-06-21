@@ -79,7 +79,7 @@ const initialize = function () {
   })
 }
 
-// mongoose.Promise = global.Promise
+mongoose.Promise = global.Promise
 mongoose.connect(config.database) // 连接数据库
 
 const db = mongoose.connection

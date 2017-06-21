@@ -39,13 +39,16 @@ userSchema.pre('save', function (next) {
 
 // 校验用户输入密码是否正确
 userSchema.methods.comparePassword = function(passw, cb) {
+  console.log(bcrypt.compareSync(passw, this.passwd), 42)
   bcrypt.compare(passw, this.passwd, (err, isMatch) => {
     if (err) {
       return cb(err)
     }
+    console.log(isMatch, 47)
     cb(null, isMatch)
   })
 }
+
 
 
 const User = module.exports = mongoose.model('User', userSchema)
