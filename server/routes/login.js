@@ -18,25 +18,33 @@ router.post('/login', (req, res) => {
     if (!user) {
       res.send({ code: 40001, msg: '用户名不存在' })
     } else if (user) {
-      console.log(pwd, user.passwd)
-      //$2a$10$cF79WkIhVeM95ktWyPZh8.iZIGXc2sfQNvd351TBDb6RzNmm.xsQm
       user.comparePassword(pwd, (err, isMatch) => {
         if (isMatch && !err) {
           var token = jwt.sign({ name: user.username }, config.secret, {
             expiresIn: 10080
           })
-          user.token = token
-          user.save(err => {
-            if (err) {
-              res.send(err)
+          // user.token = token
+          // user.save(err => {
+          //   if (err) {
+          //     res.send(err)
+          //   }
+          // })
+          User.update(
+            { username },  // 条件值
+            { token },
+            { upsert: true },
+            (err) => {
+              if (err) {
+                res.send({ code: 50003, msg: '未知错误' })
+              }
+              res.json({
+                code: 200,
+                message: '验证成功',
+                token: 'Bearer' + token,
+                name: username
+              })
             }
-          })
-          res.json({
-            code: 200,
-            message: '验证成功',
-            token: 'Bearer' + token,
-            name: username
-          })
+          )
         } else {
           res.send({ code: 40002, msg: '密码错误' })
         }

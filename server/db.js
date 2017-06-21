@@ -72,7 +72,7 @@ const initialize = function () {
       console.log(err)
     } else if (!data.length) {
       console.log('Database opens for the first time...')
-      Promise.all(initData.map(item => new Models[item.type](item).save()))
+      Promise.all(initData.map(item => new User(item).save()))
         .then(() => console.log('Initialize successfully.'))
         .catch(() => console.log('Something went wrong during initializing.'))
     }
