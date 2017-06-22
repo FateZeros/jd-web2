@@ -9,8 +9,20 @@
 				</div>
 				<div class="nav-cont">
 					<ul>
-						<li class="nav-item"></li>
-						<li class="nav-item"><a @click="toLogin()">你好，请登录</a><span @click="toRegister()">免费注册</span></li>
+						<li class="nav-item mine-brief" v-if="userName !== ''">	
+							<a @click="toMine()">
+							<i class="fa fa-user"></i>
+							{{userName}}
+							</a>
+							<!-- -->
+							<div class="mine-brief-wrap">
+								121212
+							</div>
+						</li>
+						<li class="nav-item" v-else-if="userName === ''">
+							<a @click="toLogin()">你好，请登录</a>
+							<span @click="toRegister()">免费注册</span>
+						</li>
 						<li class="nav-item"><a>我的订单</a></li>
 						<li class="nav-item"><a>我的京东</a></li>
 						<li class="nav-item"><a>京东会员</a></li>
@@ -92,17 +104,29 @@
 	import AFooter from '../../components/Footer.vue'
 
 	import { mapState } from 'vuex'
+	import { getUser } from '../../utils'
 
 	export default {
+		data() {
+			return {
+				userName: ''
+			}
+		},
+		created() {
+			const { username } = getUser('jdUser')
+			this.userName = username || ''
+		},
 		methods: {
 			toLogin() {
 				this.$router.push({ path: '/login' })
 			},
 			toRegister() {
 				this.$router.push({ path: '/register' })
+			},
+			toMine() {
+				this.$router.push({ path: '/mine' })
 			}
 		},
-		computed: mapState(['user']),
 		components: {
 			HomeGrid,
 			HomeSeckill,
@@ -173,6 +197,27 @@
 					border-right: none;
 				}
 			}
+		}
+	}
+
+	.mine-brief {
+		position: relative;
+
+		&:hover {
+			.mine-brief-wrap {
+				display: block;
+			}
+		}
+
+		.mine-brief-wrap {
+			display: none;
+			width: 200px;
+			height: 100px;
+			background: #fff;
+			position: absolute;
+			top: 20px;
+			left: 20px;
+			// border: 1px solid;
 		}
 	}
 

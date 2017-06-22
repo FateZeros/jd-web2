@@ -1,9 +1,14 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+
 import Login from '../pages/Login.vue'
-import Home from '../pages/home/Home.vue'
 import ForgetPwd from '../pages/ForgetPwd.vue'
 import Register from '../pages/Register.vue'
+
+/* 主页 模块 */
+import Home from '../pages/home/Home.vue'
+/* 我的资料 模块 */
+import Mine from '../pages/mine/Mine.vue'
 
 Vue.use(Router)
 
@@ -25,6 +30,10 @@ export default new Router({
     {
       path: '/register',
       component: Register
+    },
+    {
+      path: '/mine',
+      component: Mine
     }
   ]
 })
