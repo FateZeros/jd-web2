@@ -19,6 +19,24 @@
 				</div>
 			</div>
 			<div class="category-infos">
+				<div class="j-user">
+					<div class="user-info">
+						<div class="user-img">
+							<img :src="userImg" alt="" />
+						</div>
+						<div class="user-brief">
+							<div class="user-brief-item">Hi, {{userName}}</div>
+							<div class="user-brief-item">
+								<i class="fa fa-diamond"></i>
+								金牌会员
+								<a class="logout" @click="toLogin()">退出</a>
+							</div>
+						</div>
+					</div>
+					<div class="user-profit">
+						<a>您可享金牌特惠，开通PLUS</a>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -35,7 +53,10 @@
 	import static01 from '../../assets/img/static01.jpg'
 	import static02 from '../../assets/img/static02.jpg'
 
+	import user01 from '../../assets/img/user01.jpg'
+
 	import { swiper, swiperSlide } from 'vue-awesome-swiper'
+	import { getUser } from '../../utils'
 
 	export default {
 		data() {
@@ -51,6 +72,8 @@
 					static01,
 					static02
 				],
+				userImg: user01,
+				userName: '',
 				swiperOption: {
 					autoplay: 3000,
 					loop: true,
@@ -63,9 +86,19 @@
         }
 			}
 		},
+		created() {
+			const { username } = getUser('jdUser')
+			this.userName = username || ''
+		},
 		components: {
 			swiper,
 			swiperSlide
+		},
+		methods: {
+			toLogin() {
+				localStorage.setItem('jdUser', '')
+				this.$router.push({ path: '/login' })
+			}
 		}
 	}
 </script>
@@ -132,6 +165,73 @@
 		background: #fff;
 
 		border:1px solid;
+
+		.j-user {
+			width: 180px;
+			height: 116px;
+			padding: 0 10px;
+			box-sizing: border-box;
+			border-bottom: 1px solid #e3e3e3;
+
+			.user-info {
+				width: 100%;
+				height: 60px;
+				padding: 5px 0;
+				display: flex;
+
+				.user-img {
+					width: 50px;
+					height: 50px;
+					border: 2px solid #e2cea4;
+					border-radius: 50%;
+					text-align: center;
+
+					img {
+						width: 40px;
+						height: 40px;
+						border-radius: 23px;
+						margin: 5px auto;
+					}
+				}
+
+				.user-brief {
+					flex: 1;
+					height: 50px;
+					font-size: 12px;
+					padding: 10px 0 5px 5px;
+
+					.user-brief-item {
+						width: 100%;
+						height: 20px;
+						line-height: 20px;
+						position: relative;
+
+						i {
+							color: #f7b80a;
+						}
+
+						.logout {
+							right: 0;
+						}
+					}
+				}
+			}
+
+			.user-profit {
+				font-size: 12px;
+				border: 2px solid #e01323;
+				height: 20px;
+				line-height: 20px;
+				text-align: center;
+				padding: 2px;
+				color: #e01323;
+
+				&:hover {
+					color: #fff;
+					background: #e01323;
+				}
+			}
+		}
 	}
 	
 </style>

@@ -15,9 +15,6 @@
 							{{userName}}
 							</a>
 							<!-- -->
-							<div class="mine-brief-wrap">
-								121212
-							</div>
 						</li>
 						<li class="nav-item" v-else-if="userName === ''">
 							<a @click="toLogin()">你好，请登录</a>
@@ -202,23 +199,6 @@
 
 	.mine-brief {
 		position: relative;
-
-		&:hover {
-			.mine-brief-wrap {
-				display: block;
-			}
-		}
-
-		.mine-brief-wrap {
-			display: none;
-			width: 200px;
-			height: 100px;
-			background: #fff;
-			position: absolute;
-			top: 20px;
-			left: 20px;
-			// border: 1px solid;
-		}
 	}
 
 	.header {
@@ -229,12 +209,13 @@
 	.search-cont {
 		width: $commonWidth;
 		margin: 0 auto;
+		position: relative;
 
 		.logo {
 			position: absolute;
 		  z-index: 2;
-		  left: 65px;
-		  top: 0;
+		  left: 0;
+		  top: -30px;
 		  width: 190px;
 		  height: 170px;
 		  box-shadow: 0 -12px 10px rgba(0,0,0,.2);

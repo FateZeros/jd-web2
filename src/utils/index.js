@@ -13,13 +13,9 @@ function setUser(nameSpace, username, token, date) {
 /* 从缓存中 获取用户信息 */
 function getUser(nameSpace) {
 	let userModel = {}
-	try {
-		const user = JSON.parse(localStorage.getItem(nameSpace))
-		if (user) {
-			userModel = user
-		}
-	} catch (err) {
-		console.error(err)
+	const jdUser = localStorage.getItem(nameSpace)
+	if (jdUser) {
+		userModel = JSON.parse(jdUser)
 	}
 	return userModel
 }
