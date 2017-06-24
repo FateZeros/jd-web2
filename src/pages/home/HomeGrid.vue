@@ -22,9 +22,10 @@
 				<div class="j-user">
 					<div class="user-info">
 						<div class="user-img">
-							<img :src="userImg" alt="" />
+							<img :src="userImg" alt="" v-if="userName !== ''" />
+							<img :src="noLoginImg" alt="" v-else />
 						</div>
-						<div class="user-brief">
+						<div class="user-brief" v-if="userName !== ''">
 							<div class="user-brief-item">Hi, {{userName}}</div>
 							<div class="user-brief-item">
 								<i class="fa fa-diamond"></i>
@@ -32,11 +33,23 @@
 								<a class="logout" @click="toLogin()">退出</a>
 							</div>
 						</div>
+						<div class="user-brief" v-else>
+							<div class="user-brief-item">Hi</div>
+							<div class="user-brief-item">
+								<a @click="toLogin()">登录</a>
+								<a @click="toRegister()">注册</a>
+							</div>
+						</div>
 					</div>
 					<div class="user-profit">
-						<a>您可享金牌特惠，开通PLUS</a>
+						<a class="gold-profit" v-if="userName !== ''">您可享金牌特惠，开通PLUS</a>
+						<div class="new-profit" v-else>
+							<a class="new-profit-item">新人福利</a>
+							<a class="new-profit-item">PLUS会员</a>
+						</div>
 					</div>
 				</div>
+				<home-news></home-news>
 			</div>
 		</div>
 	</div>
@@ -57,6 +70,8 @@
 
 	import { swiper, swiperSlide } from 'vue-awesome-swiper'
 	import { getUser } from '../../utils'
+	import noLoginImg from '../../assets/img/no_login.jpg'
+	import HomeNews from './HomeNews.vue'
 
 	export default {
 		data() {
@@ -74,6 +89,7 @@
 				],
 				userImg: user01,
 				userName: '',
+				noLoginImg: noLoginImg,
 				swiperOption: {
 					autoplay: 3000,
 					loop: true,
@@ -92,12 +108,16 @@
 		},
 		components: {
 			swiper,
-			swiperSlide
+			swiperSlide,
+			HomeNews
 		},
 		methods: {
 			toLogin() {
 				localStorage.setItem('jdUser', '')
 				this.$router.push({ path: '/login' })
+			},
+			toRegister() {
+				this.$router.push({ path: '/register' })
 			}
 		}
 	}
@@ -219,16 +239,36 @@
 
 			.user-profit {
 				font-size: 12px;
-				border: 2px solid #e01323;
-				height: 20px;
-				line-height: 20px;
 				text-align: center;
 				padding: 2px;
 				color: #e01323;
 
-				&:hover {
-					color: #fff;
-					background: #e01323;
+				.gold-profit {
+					border: 2px solid #e01323;
+					height: 20px;
+					line-height: 20px;
+
+					&:hover {
+						color: #fff;
+						background: #e01323;
+					}
+				}
+
+				.new-profit {
+					display: flex;
+					justify-content: space-between;
+		
+					.new-profit-item {
+						width: 70px;
+						border: 2px solid #e01323;
+						height: 20px;
+						line-height: 20px;
+
+						&:hover {
+							color: #fff;
+							background: #e01323;
+						}
+					}
 				}
 			}
 		}

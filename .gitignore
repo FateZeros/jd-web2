@@ -16,3 +16,6 @@ dist
 
 #remark
 REMARK.md
+
+#mockData
+server/mockData
