@@ -1,31 +1,3 @@
-// const fs = require('fs')
-// const path = require('path')
-// const express = require('express')
-// const favicon = require('serve-favicon')
-// const bodyParser = require('body-parser')
-// const cookieParser = require('cookie-parser')
-
-// const db = require('./db')
-// const resolve = file => path.resolve(__dirname, file)
-// const api = require('./api')
-// const app = express()
-
-// app.set('port', (process.env.port || 2121))
-// app.use(favicon(resolve('../favicon.ico')))
-// app.use(bodyParser.json())
-// app.use(bodyParser.urlencoded({ extended: false }))
-// app.use(cookieParser())
-// app.use('/dist', express.static(resolve('../dist')))
-// app.use(api)
-
-// app.use(function(req, res) {
-//   res.status(404).end()
-// })
-
-// app.listen(app.get('port'), function () {
-//   console.log('Visit http://localhost:' + app.get('port'))
-// })
-
 const fs = require('fs')
 const path = require('path')
 const express = require('express')
@@ -35,8 +7,22 @@ const cookieParser = require('cookie-parser')
 const mongoose = require('mongoose')
 const passport = require('passport') // 用户认证模块passport
 const Strategy = require('passport-http-bearer').Strategy // token验证模块
+const config = require('./config') //连接数据库配置
 
-const db = require('./db')
+/** 连接数据库 **/
+mongoose.Promise = global.Promise
+mongoose.connect(config.database) 
+
+const db = mongoose.connection
+db.on('error', function () {
+  console.log('Database connection error.')
+})
+
+db.once('open', function () {
+  console.log('The database has connected.')
+})
+/** 连接数据库 **/
+
 const routes = require('./routes')
 
 const app = express()

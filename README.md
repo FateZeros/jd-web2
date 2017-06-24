@@ -47,8 +47,8 @@ npm install --save-dev nodemon
 ```
 npm install --save jsonwebtoken bcrypt passport passport-http-bearer
 ```
-jsonwebtoken: 生成token
-bcrypt: 对用户密码加密
-passport: 权限验证库
+jsonwebtoken: 生成token</br>
+bcrypt: 对用户密码加密</br>
+passport: 权限验证库</br>
 passport-http-bearer: Passport的HTTP承载认证策略
  
