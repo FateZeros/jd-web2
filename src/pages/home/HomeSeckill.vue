@@ -10,9 +10,9 @@
 				<div class="sec-clock-cont">
 					<div class="clock-tip">当前场次</div>
 					<div class="clock-cont">
-						<div class="clock-hour">12</div>:
-						<div class="clock-minute">50</div>:
-						<div class="clock-secs">43</div>
+						<div class="clock-hour">{{seckillHour}}</div>:
+						<div class="clock-minute">{{seckillMin}}</div>:
+						<div class="clock-secs">{{seckillSec}}</div>
 					</div>
 					<div class="clock-tip">后结束抢购</div>
 				</div>
@@ -20,11 +20,11 @@
 			<!-- 秒杀商品 -->
 			<div class="seckill-cargos">
 				<swiper :options="swiperOption" ref="swipeSeckill" class="swiper-box">
-					<swiper-slide class="seckill-item" v-for="(item, key) in seckillCargos" :key="key">
+					<swiper-slide class="seckill-item" v-for="(item, key) in seckill.seckillRecords" :key="key">
 						<div class="seckill-type" v-if="item.seckillType === 1">{{item.seckillTypeName}}</div>
 						<div class="seckill-type" v-else-if="item.seckillType === 2">{{item.seckillTypeName}}</div>
 						<div class="seckill-type" v-else-if="item.seckillType === 3">{{item.seckillTypeName}}</div>
-						<img :src="item.img" alt="">
+						<img :src="item.imgUrl" alt="">
 						<span class="seckill-shadow"></span>
 						<p class="description">{{item.description}}</p>
 						<p class="price">
@@ -36,7 +36,7 @@
     			<div class="swiper-button-next" slot="button-next"></div>
   			</swiper>
   			<div class="seckill-right">
-  				<img :src="seckillRight" alt=""/>
+  				<img :src="seckill.seckillRight" alt=""/>
   			</div>
 			</div>
 		</div>
@@ -44,145 +44,15 @@
 </template>
 
 <script>
-	// 测试图片
-	import seckill01 from '../../assets/img/seckill01.jpg'
-	import seckill02 from '../../assets/img/seckill02.jpg'
-	import seckill03 from '../../assets/img/seckill03.jpg'
-	import seckill04 from '../../assets/img/seckill04.jpg'
-	import seckill05 from '../../assets/img/seckill05.jpg'
-	import seckill06 from '../../assets/img/seckill06.jpg'
-	import seckill07 from '../../assets/img/seckill07.jpg'
-	import seckill08 from '../../assets/img/seckill08.jpg'
-	import seckill09 from '../../assets/img/seckill09.jpg'
-	import seckill10 from '../../assets/img/seckill10.jpg'
-	import seckill11 from '../../assets/img/seckill11.jpg'
-	import seckill12 from '../../assets/img/seckill12.jpg'
-	import seckill13 from '../../assets/img/seckill13.jpg'
-	import seckill14 from '../../assets/img/seckill14.jpg'
-	import seckill15 from '../../assets/img/seckill15.jpg'
-
-	import seckillRight from '../../assets/img/seckill-right.png'
-
 	import { swiper, swiperSlide } from 'vue-awesome-swiper'
+	import { mapState, mapActions } from 'vuex'
 
 	export default {
 		data() {
 			return {
-				seckillCargos: [{
-					id: 1,
-					img: seckill01,
-					seckillPrice: '85.00',
-					seckillType: 1,
-					seckillTypeName: '热卖',
-					price: '169.00',
-					description: '[京东超市] 德国 进口牛奶 欧德堡超高温处'
-				}, {
-					id: 2,
-					img: seckill02,
-					seckillType: 2,
-					seckillTypeName: '推荐',
-					seckillPrice: '85.00',
-					price: '169.00',
-					description: '[京东超市] 德国 进口牛奶 欧德堡超高温处2'
-				}, {
-					id: 3,
-					img: seckill03,
-					seckillType: 3,
-					seckillTypeName: '量贩装',
-					seckillPrice: '85.00',
-					price: '169.00',
-					description: '[京东超市] 德国 进口牛奶 欧德堡超高温处3'
-				}, {
-					id: 4,
-					img: seckill04,
-					seckillType: 4,
-					seckillPrice: '85.00',
-					price: '169.00',
-					description: '[京东超市] 德国 进口牛奶 欧德堡超高温处4'
-				}, {
-					id: 5,
-					img: seckill05,
-					seckillType: 4,
-					seckillPrice: '85.00',
-					price: '169.00',
-					description: '[京东超市] 德国 进口牛奶 欧德堡超高温处5'
-				}, {
-					id: 6,
-					img: seckill06,
-					seckillType: 3,
-					seckillTypeName: '量贩装',
-					seckillPrice: '85.00',
-					price: '169.00',
-					description: '[京东超市] 德国 进口牛奶 欧德堡超高温处6'
-				}, {
-					id: 7,
-					img: seckill07,
-					seckillType: 1,
-					seckillTypeName: '热卖',
-					seckillPrice: '85.00',
-					price: '169.00',
-					description: '[京东超市] 德国 进口牛奶 欧德堡超高温处7'
-				}, {
-					id: 8,
-					img: seckill08,
-					seckillType: 2,
-					seckillTypeName: '推荐',
-					seckillPrice: '85.00',
-					price: '169.00',
-					description: '[京东超市] 德国 进口牛奶 欧德堡超高温处8'
-				}, {
-					id: 9,
-					img: seckill09,
-					seckillType: 4,
-					seckillPrice: '85.00',
-					price: 169.00,
-					description: '[京东超市] 德国 进口牛奶 欧德堡超高温处9'
-				}, {
-					id: 10,
-					img: seckill10,
-					seckillType: 4,
-					seckillPrice: 85.00,
-					price: '169.00',
-					description: '[京东超市] 德国 进口牛奶 欧德堡超高温处10'
-				}, {
-					id: 11,
-					img: seckill11,
-					seckillType: 1,
-					seckillTypeName: '热卖',
-					seckillPrice: '85.00',
-					price: '169.00',
-					description: '[京东超市] 德国 进口牛奶 欧德堡超高温处11'
-				}, {
-					id: 12,
-					img: seckill12,
-					seckillType: 4,
-					seckillPrice: '85.00',
-					price: '169.00',
-					description: '[京东超市] 德国 进口牛奶 欧德堡超高温处12'
-				}, {
-					id: 13,
-					img: seckill13,
-					seckillType: 4,
-					seckillPrice: '85.00',
-					price: '169.00',
-					description: '[京东超市] 德国 进口牛奶 欧德堡超高温处13'
-				}, {
-					id: 14,
-					img: seckill14,
-					seckillType: 3,
-					seckillTypeName: '量贩装',
-					seckillPrice: '85.00',
-					price: '169.00',
-					description: '[京东超市] 德国 进口牛奶 欧德堡超高温处14'
-				}, {
-					id: 15,
-					img: seckill15,
-					seckillType: 4,
-					seckillPrice: '85.00',
-					price: '169.00',
-					description: '[京东超市] 德国 进口牛奶 欧德堡超高温处15'
-				}],
-				seckillRight: seckillRight,
+				seckillHour: 0,
+				seckillMin: 0,
+				seckillSec: 0,
 				swiperOption: {
 					notNextTick: true,
 					loop: true,
@@ -192,17 +62,52 @@
 				}
 			}
 		},
-		components: {
-			swiper,
-			swiperSlide
+		methods: {
+			...mapActions(['getHomeSeckill']),
+			countDownTime() {
+				const date = new Date()
+				const now = date.getTime()
+				// console.log(this.seckill.seckillEndtime)
+				// 设置截止时间
+				const endDate = new Date(this.seckill.seckillEndtime)
+				const end = endDate.getTime()
+				// 时差
+				const leftTime = end - now
+				if (leftTime >= 0) {					
+					this.seckillHour = this.handleTime(Math.floor(leftTime/1000/60/60%24))
+					this.seckillMin = this.handleTime(Math.floor(leftTime/1000/60%60))
+					this.seckillSec = this.handleTime(Math.floor(leftTime/1000%60))
+				}
+				setTimeout(this.countDownTime, 1000)
+			},
+			handleTime(timeNum) {
+				let timeAfter = timeNum
+				if (timeAfter < 10) {
+					timeAfter = '0' + timeAfter
+				}
+				return timeAfter
+			}
+		},
+		created() {
+			this.getHomeSeckill()
 		},
 		computed: {
+			...mapState({
+				seckill: state => {
+					// console.log(state.homeSeckill.seckill.seckillEndtime)
+					return state.homeSeckill.seckill
+				}
+			}),
 			swiper() {
 				return this.$refs.swipeSeckill.swiper
 			}
 		},
+		components: {
+			swiper,
+			swiperSlide
+		},
 		mounted() {
-			// console.log(this.swiper)
+			this.countDownTime()
 		}
 	}
 	

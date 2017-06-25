@@ -1,13 +1,15 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
-import modules from './modules'
-
 Vue.use(Vuex)
+
+import modules from './modules'
 
 const store = new Vuex.Store({
   modules: {
-  	login: modules.login
+  	login: modules.login,
+  	homeSale: modules.homeSale,
+  	homeSeckill: modules.homeSeckill
   }
 })
 

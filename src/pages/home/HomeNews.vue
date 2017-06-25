@@ -1,3 +1,4 @@
+<!-- 首页 促销 公告 -->
 <template>
 	<div class="container">
 		<div class="news-title">
@@ -8,24 +9,31 @@
 			</div>
 		</div>
 		<div class="news-cont">
-			<div class="cont-item">
-				<a>哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈</a>
-			</div>
-			<div class="cont-item">
-				<a>哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈</a>
-			</div>
-			<div class="cont-item">
-				<a>哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈</a>
-			</div>
-			<div class="cont-item">
-				<a>哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈</a>
+			<div class="cont-item" v-for="(sale, key) in saleList" :key="key" >
+				<a>{{sale.saleCont}}</a>
 			</div>
 		</div>
 	</div>
 </template>
 
 <script>
-	
+	import { mapState, mapActions } from 'vuex'
+
+	export default {
+		methods: {
+			...mapActions(['getHomeSale'])
+		},
+		created() {
+			this.getHomeSale()
+		},
+		computed: {
+			...mapState({
+				saleList: state => {
+					return state.homeSale.saleList.slice(0, 4)
+				}
+			})
+		}
+	}	
 </script>
 
 <style lang="sass" rel="stylesheet/scss" scoped>

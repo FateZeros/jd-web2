@@ -27,12 +27,15 @@ const routes = require('./routes')
 
 const app = express()
 
+// 设置服务器端口
 app.set('port', (process.env.port || 2121))
 app.use(favicon(path.resolve(__dirname, '../favicon.ico')))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(cookieParser())
 app.use('/dist', express.static(path.resolve(__dirname, '../dist')))
+//加载 图片静态资源
+app.use('/static/imgs', express.static(path.join(__dirname, 'imgs')))
 app.use(passport.initialize());// 初始化passport模块
 
 routes(app)

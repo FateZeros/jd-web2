@@ -50,6 +50,7 @@
 					</div>
 				</div>
 				<home-news></home-news>
+				<home-service></home-service>
 			</div>
 		</div>
 	</div>
@@ -72,6 +73,7 @@
 	import { getUser } from '../../utils'
 	import noLoginImg from '../../assets/img/no_login.jpg'
 	import HomeNews from './HomeNews.vue'
+	import HomeService from './HomeService.vue'
 
 	export default {
 		data() {
@@ -109,7 +111,8 @@
 		components: {
 			swiper,
 			swiperSlide,
-			HomeNews
+			HomeNews,
+			HomeService
 		},
 		methods: {
 			toLogin() {
@@ -183,8 +186,6 @@
 		width: 180px;
 		height: 480px;
 		background: #fff;
-
-		border:1px solid;
 
 		.j-user {
 			width: 180px;
