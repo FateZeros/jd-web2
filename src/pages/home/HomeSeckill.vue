@@ -1,3 +1,4 @@
+<!-- 首页 商品秒杀 -->
 <template>
 	<div class="container">
 		<div class="seckill-cont">

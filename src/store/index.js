@@ -9,7 +9,8 @@ const store = new Vuex.Store({
   modules: {
   	login: modules.login,
   	homeSale: modules.homeSale,
-  	homeSeckill: modules.homeSeckill
+  	homeSeckill: modules.homeSeckill,
+  	homeCuffRank: modules.homeCuffRank
   }
 })
 

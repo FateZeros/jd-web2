@@ -1,7 +1,9 @@
 <template>
 	<div class="container">
 		<div class="home-grid">
-			<div class="category-cont"></div>
+			<div class="category-cont">
+				<home-types></home-types>
+			</div>
 			<div class="category-imgs">
 				<!-- swiper -->
 				<swiper :options="swiperOption" ref="swiper-cateImg" class="swiper-box">
@@ -74,6 +76,7 @@
 	import noLoginImg from '../../assets/img/no_login.jpg'
 	import HomeNews from './HomeNews.vue'
 	import HomeService from './HomeService.vue'
+	import HomeTypes from './HomeTypes.vue'
 
 	export default {
 		data() {
@@ -112,7 +115,8 @@
 			swiper,
 			swiperSlide,
 			HomeNews,
-			HomeService
+			HomeService,
+			HomeTypes
 		},
 		methods: {
 			toLogin() {
