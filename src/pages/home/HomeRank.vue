@@ -1,6 +1,6 @@
 <!-- 首页 排行榜 -->
 <template>
-	<div class="container">
+	<div>
 		<ul class="rank-title">
 			<li>
 				<input type="radio" id="tab1" name="tab-control" checked>
@@ -50,7 +50,6 @@
 	export default {
 		data() {
 			return {
-				isActive: true
 			}
 		},
 		methods: {

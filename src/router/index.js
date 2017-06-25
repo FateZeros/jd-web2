@@ -9,6 +9,8 @@ import Register from '../pages/Register.vue'
 import Home from '../pages/home/Home.vue'
 /* 我的资料 模块 */
 import Mine from '../pages/mine/Mine.vue'
+/* 购物车 */
+import ShopCart from '../pages/ShopCart.vue'
 
 Vue.use(Router)
 
@@ -34,6 +36,10 @@ export default new Router({
     {
       path: '/mine',
       component: Mine
+    },
+    {
+      path: '/shopcart',
+      component: ShopCart
     }
   ]
 })
