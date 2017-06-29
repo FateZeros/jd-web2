@@ -66,7 +66,7 @@
 						</div>
 						<div class="item-list">
 							<div class="item-single">
-								<div class="cart-checkbox">
+								<div class="cart-checkbox list-check">
 									<input type="checkbox">
 									<label for="">勾选当前商品</label>
 								</div>
@@ -77,8 +77,29 @@
 											韩都衣舍2017夏装新款韩版女装假两件网纱收腰连衣裙MR6262陆 白色 M
 										</div>
 									</div>
-									<div>1212</div>
-									<div>1212</div>
+									<div class="good-size">
+										<div class="good-size-item">颜色: 白色</div>
+										<div class="good-size-item">尺码: M</div>
+									</div>
+									<div class="good-price">
+										¥162.45
+									</div>
+									<div class="good-nums">
+										<div class="num-count">
+											<div class="num-count-handle num-minus">-</div>
+											<input type="text" class="num-input" :value="goodNums"/>
+											<div class="num-count-handle num-add">+</div>
+										</div>
+										<div class="good-txt">有货</div>
+									</div>
+									<div class="good-price-count">
+										<strong>¥162.45</strong>
+									</div>
+									<div class="good-ops">
+										<div class="good-ops-item">删除</div>
+										<div class="good-ops-item">移到我的关注</div>	
+										<div class="good-ops-item">加到我的关注</div>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -103,7 +124,8 @@
 				cartNum: 1,
 				shopName: '韩都衣舍旗舰店',
 				shopExtra: '已免运费',
-				cartImg: cart01
+				cartImg: cart01,
+				goodNums: 1
 			}
 		},
 		methods: {
@@ -279,23 +301,23 @@
 					}
 
 					.thead-price {
-						width: 120px;
-						text-align: right;
+						width: 140px;
+						text-align: center;
 					}
 
 					.thead-nums {
-						width: 80px;
+						width: 100px;
 						text-align: center;
 					}
 
 					.thead-sum {
 						width: 100px;
-						text-align: right;
+						text-align: center;
 					}
 
 					.thead-action {
-						width: 75px;
-						text-align: center;
+						width: 100px;
+						text-align: left;
 					}
 				}
 
@@ -308,6 +330,10 @@
 				label {
 					display: none;
 				}
+			}
+
+			.list-check {
+				margin-top: 15px;
 			}
 
 			.cart-tbody {
@@ -328,22 +354,22 @@
 				}
 
 				.item-list {
+					border: 1px solid #e3e3e3;
 					border-top: 2px solid #aaa;
 					position: relative;
 					padding: 0 10px;
+					font-size: 12px;
 
 					.item-single {
 						.cart-good {
 							height: 110px;
 							display: flex;
 							padding: 15px 0;
-							border: 1px solid;
 						}
 
 						.good-brief {
-							width: 300px;
+							width: 340px;
 							height: 84px;
-							border: 1px solid;
 							display: flex;
 
 							img {
@@ -354,7 +380,97 @@
 							.good-info {
 								flex: 1;
 								height: 80px;
-								font-size: 12px;
+								padding-left: 10px;
+							}
+						}
+
+						.good-size {
+							width: 150px;
+							height: 84px;
+							padding-left: 10px;
+
+							.good-size-item {
+								width: 100%;
+								height: 20px;
+								line-height: 20px;
+							}
+						}
+
+						.good-price {
+							width: 145px;
+							height: 84px;
+							text-align: center;
+						}
+
+						.good-nums {
+							width: 100px;
+							height: 84px;
+
+							.num-count {
+								width: 100px;
+								height: 22px;
+								overflow: hidden;
+								display: flex;
+								box-sizing: border-box;
+
+								.num-input {
+									width: 60px;
+							    border: 1px solid #cacbcb;
+							    height: 18px;
+							    text-align: center;
+							    padding: 1px;
+							    font-size: 12px;
+							    font-family: verdana;
+							    color: #333;
+							    -webkit-appearance: none;
+								}
+
+								.num-count-handle {
+									width: 20px;
+									height: 20px;
+									line-height: 20px;
+									text-align: center;
+									border: 1px solid #cacbcb;
+									color: #666;
+									cursor: pointer;
+								}
+
+								.num-minus {
+									border-right: none;
+								}
+
+								.num-add {
+									border-left: none;
+								}
+
+							}
+
+							.good-txt {
+								width: 100px;
+								height: 20px;
+								line-height: 20px;
+								color: #aaa;
+								text-align: center;
+							}
+						}
+
+						.good-price-count {
+							width: 100px;
+							text-align: center;
+						}
+
+						.good-ops {
+							width: 100px;
+
+							.good-ops-item {
+								width: 100%;
+								height: 20px;
+								line-height: 20px;
+								cursor: pointer;
+
+								&:hover {
+									color: $red1;
+								}
 							}
 						}
 					}
