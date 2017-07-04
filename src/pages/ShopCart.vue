@@ -104,6 +104,37 @@
 							</div>
 						</div>
 					</div>
+					<!-- 购物车 Footer -->
+					<div class="cart-footer">
+						<div class="select-all">
+							<div class="cart-checkbox">
+								<input type="checkbox">
+								<label for="">勾选全部商品</label>
+							</div>
+							<span>全选</span>
+						</div>
+						<div class="cart-footer-ops">
+							<a href="">删除选中的商品</a>
+							<a href="">移动到我的关注</a>
+							<a href="">清除下柜商品</a>
+						</div>
+						<div class="cart-footer-right">
+							<div class="cart-toPay">
+								去结算
+							</div>
+							<div class="price-sum">
+								<div class="price-count">
+									总价：<em>¥1999.00</em>
+								</div>
+								<div class="price-discount">
+									已优惠：-¥0.00
+								</div>
+							</div>
+							<div class="selected-count">
+								已选择 <span>0</span> 件商品
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -474,6 +505,86 @@
 							}
 						}
 					}
+				}
+			}
+
+			.cart-footer {
+				width: 100%;
+				height: 60px;
+				margin-top: 20px;
+				border: 1px solid #e3e3e3;
+				padding-left: 15px;
+				font-size: 12px;
+				box-sizing: border-box;
+				display: flex;
+
+				.select-all {
+					width: 50px;
+					padding: 20px 0;
+				}
+
+				.cart-footer-ops {
+					width: 300px;
+					padding: 20px 0;
+
+					a:hover {
+						color: $red1;
+					}
+				}
+
+				.cart-footer-right {
+					flex: 1;
+					height: 60px;
+
+					display: flex;
+					flex-direction: row-reverse;
+
+					.selected-count {
+						width: 90px;
+						text-align: center;
+						padding-top: 12px;
+
+						span {
+							color: #e4393c;
+							font-size: 14px;
+						}
+					}
+
+					.price-sum {
+						width: 180px;
+						height: 60px;
+						text-align: center;
+						padding-top: 10px;
+
+						.price-count {
+							width: 100%;
+							height: 20px;
+
+							em {
+								font-size: 16px;
+    						color: #e4393c;
+    						font-weight: 700;
+							}
+						}
+
+						.price-discount {
+							width: 100%;
+							height: 20px;
+							margin-top: 4px;
+						}
+					}
+					
+					.cart-toPay {
+						width: 100px;
+						height: 58px;
+						color: #fff;
+						font-size: 18px;
+						text-align: center;
+						line-height: 60px;
+						background: #e64346;
+						cursor: pointer;
+					}
+
 				}
 			}
 		}
